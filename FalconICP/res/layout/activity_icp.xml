@@ -259,7 +259,7 @@
 	        android:src="@drawable/dcs_center"
 	        android:contentDescription="@string/dcs" />
 	        
-	        <ImageView
+	        <org.bitbucket.mjanczykowski.falconicp.DriftWarnSwitch
 	        android:id="@+id/DriftWarn"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
