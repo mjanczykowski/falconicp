@@ -3,6 +3,27 @@
 
     <string name="app_name">FalconICP</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="icpbutton1">1</string>
+    <string name="icpbutton2">2</string>
+    <string name="icpbutton3">3</string>
+    <string name="icpbutton4">4</string>
+    <string name="icpbutton5">5</string>
+    <string name="icpbutton6">6</string>
+    <string name="icpbutton7">7</string>
+    <string name="icpbutton8">8</string>
+    <string name="icpbutton9">9</string>
+    <string name="icpbutton0">0</string>
+    <string name="icpbuttonrcl">RCL</string>
+    <string name="icpbuttonent">ENT</string>
+    <string name="com1">COM 1</string>
+    <string name="com2">COM 2</string>
+    <string name="iff">IFF</string>
+    <string name="list">LIST</string>
+    <string name="aa">A-A</string>
+    <string name="ag">A-G</string>
+    <string name="arrow_up">UP</string>
+    <string name="arrow_down">DOWN</string>
+    <string name="dcs">DCS</string>
+    <string name="driftwarn">DRIFT WARN</string>
 
 </resources>
