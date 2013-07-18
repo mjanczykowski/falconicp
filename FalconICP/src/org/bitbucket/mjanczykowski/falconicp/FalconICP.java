@@ -2,8 +2,10 @@ package org.bitbucket.mjanczykowski.falconicp;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -54,6 +56,18 @@ public class FalconICP extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.icp, menu);
         return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	// Handle item selection
+    	switch (item.getItemId()) {
+    		case R.id.action_settings:
+    			this.startActivity(new Intent(this, Settings.class));
+    			return true;
+    		default:
+    			return super.onOptionsItemSelected(item);
+    	}
     }
     
     

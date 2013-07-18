@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory 
+        android:title="@string/pref_connection_title"
+        android:key="pref_key_connection_settings" >
+        <EditTextPreference 
+            android:key="pref_key_server_ip"
+            android:summary="@string/pref_summary_server_ip"
+            android:title="@string/pref_title_server_ip"
+            android:defaultValue="0.0.0.0" />
+        <EditTextPreference 
+            android:key="pref_key_server_port"
+            android:summary="@string/pref_summary_server_port"
+            android:title="@string/pref_title_server_port"
+            android:defaultValue="7654" />
+        <EditTextPreference 
+            android:key="pref_key_timeout"
+            android:summary="@string/pref_summary_timeout"
+            android:title="@string/pref_title_timeout"
+            android:defaultValue="10" />
+        <CheckBoxPreference 
+            android:key="pref_key_autoconnect"
+            android:summary="@string/pref_summary_autoconnect"
+            android:title="@string/pref_title_autoconnect"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory 
+        android:title="@string/pref_display_title"
+        android:key="pref_key_display_settings" >
+        <CheckBoxPreference 
+            android:key="pref_key_backlight"
+            android:summary="@string/pref_summary_backlight"
+            android:title="@string/pref_title_backlight"
+            android:defaultValue="true" />
+        <CheckBoxPreference 
+            android:key="pref_key_fullscreen"
+            android:summary="@string/pref_summary_fullscreen"
+            android:title="@string/pref_title_fullscreen"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

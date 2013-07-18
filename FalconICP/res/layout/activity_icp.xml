@@ -90,7 +90,8 @@
         android:id="@+id/keypad"
         android:layout_below="@id/ded"
         android:layout_width="fill_parent"
-    	android:layout_height="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:gravity="center"
     	android:background="#101010"
     	android:paddingTop="20dp"
     	android:paddingLeft="10dp"
@@ -222,16 +223,31 @@
 	        android:layout_marginLeft="20dp"
 	        android:src="@drawable/button0"
 	        android:contentDescription="@string/icpbutton0" />
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/switches"
+        android:layout_below="@id/keypad"
+        android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:gravity="center_horizontal"
+    	android:background="#101010"
+    	android:padding="0dp" >
 	        
-	        <ImageButton
+        	<ImageButton
 	        android:id="@+id/ICPArrowUp"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@android:color/transparent"
 	        android:layout_alignParentLeft="true"
-	        android:layout_below="@id/ICPButton7"
-	        android:layout_marginTop="40dp"
-	        android:padding="0dp"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginLeft="5dp"
+	        android:layout_marginTop="30dp"
+	        android:paddingLeft="5dp"
+	        android:paddingRight="5dp"
+	        android:paddingTop="20dp"
+	        android:paddingBottom="0dp"
 	        android:src="@drawable/arrowup"
 	        android:contentDescription="@string/arrow_up" />
 	        
@@ -243,7 +259,11 @@
 	        android:layout_alignParentLeft="true"
 	        android:layout_below="@id/ICPArrowUp"
 	        android:layout_marginTop="0dp"
-	        android:padding="0dp"
+	        android:layout_marginLeft="5dp"
+	        android:paddingLeft="5dp"
+	        android:paddingRight="5dp"
+	        android:paddingTop="0dp"
+	        android:paddingBottom="20dp"
 	        android:src="@drawable/arrowdown"
 	        android:contentDescription="@string/arrow_down" />
 	        
@@ -252,10 +272,13 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_toRightOf="@id/ICPArrowUp"
-	        android:padding="0dp"
-	        android:layout_marginLeft="20dp"
-	        android:layout_below="@id/ICPButton8"
-	        android:layout_marginTop="30dp"
+	        android:paddingLeft="0dp"
+	        android:paddingRight="0dp"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
+	        android:layout_marginLeft="10dp"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginTop="20dp"
 	        android:src="@drawable/dcs_center"
 	        android:contentDescription="@string/dcs" />
 	        
@@ -264,12 +287,14 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_toRightOf="@id/DCS"
-	        android:padding="0dp"
-	        android:layout_marginLeft="20dp"
-	        android:layout_below="@id/ICPButton8"
-	        android:layout_marginTop="30dp"
+	        android:paddingLeft="0dp"
+	        android:paddingRight="0dp"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
+	        android:layout_marginLeft="5dp"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginTop="20dp"
 	        android:src="@drawable/driftwarn_center"
 	        android:contentDescription="@string/driftwarn" />
-        
-    </RelativeLayout>
+	</RelativeLayout>
 </RelativeLayout>

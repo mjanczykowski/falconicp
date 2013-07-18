@@ -25,5 +25,19 @@
     <string name="arrow_down">DOWN</string>
     <string name="dcs">DCS</string>
     <string name="driftwarn">DRIFT WARN</string>
-
+    <string name="pref_connection_title">Connection</string>
+    <string name="pref_summary_server_ip">Your server IP address</string>
+    <string name="pref_title_server_ip">Server IP</string>
+    <string name="pref_summary_server_port">Server\'s port</string>
+    <string name="pref_title_server_port">Port</string>
+    <string name="pref_summary_timeout">Max time for connection</string>
+    <string name="pref_title_timeout">Timeout</string>
+    <string name="pref_summary_autoconnect">Autoconnect on app resume</string>
+    <string name="pref_title_autoconnect">Autoconnect</string>
+    <string name="pref_display_title">Display</string>
+	<string name="pref_summary_backlight">Keep backlight on</string>
+    <string name="pref_title_backlight">Backlight</string>
+    <string name="pref_summary_fullscreen">Hide all bars</string>
+    <string name="pref_title_fullscreen">Fullscreen</string>
+    
 </resources>
