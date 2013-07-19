@@ -26,11 +26,11 @@
     <string name="dcs">DCS</string>
     <string name="driftwarn">DRIFT WARN</string>
     <string name="pref_connection_title">Connection</string>
-    <string name="pref_summary_server_ip">Your server IP address</string>
+    <string name="pref_summary_server_ip">0.0.0.0</string>
     <string name="pref_title_server_ip">Server IP</string>
-    <string name="pref_summary_server_port">Server\'s port</string>
+    <string name="pref_summary_server_port">7654</string>
     <string name="pref_title_server_port">Port</string>
-    <string name="pref_summary_timeout">Max time for connection</string>
+    <string name="pref_summary_timeout">10</string>
     <string name="pref_title_timeout">Timeout</string>
     <string name="pref_summary_autoconnect">Autoconnect on app resume</string>
     <string name="pref_title_autoconnect">Autoconnect</string>
@@ -39,5 +39,19 @@
     <string name="pref_title_backlight">Backlight</string>
     <string name="pref_summary_fullscreen">Hide all bars</string>
     <string name="pref_title_fullscreen">Fullscreen</string>
+    <string name="menu_connect">Connect</string>
+    <string name="menu_disconnect">Disconnect</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_exit">Exit</string>
+    <string-array name="menu_connected">
+        <item>@string/menu_disconnect</item>
+        <item>@string/menu_settings</item>
+        <item>@string/menu_exit</item>
+    </string-array>
+    <string-array name="menu_disconnected">
+        <item>@string/menu_connect</item>
+        <item>@string/menu_settings</item>
+        <item>@string/menu_exit</item>
+    </string-array>
     
 </resources>

@@ -1,5 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
@@ -10,11 +11,12 @@
     <LinearLayout
         android:id="@+id/functionkeys"
         android:layout_width="fill_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
         android:background="#101010"
-        android:padding="0dp" >
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp" >
         
         	<ImageButton
 	        android:id="@+id/COM1Button"
@@ -24,6 +26,7 @@
 	        android:padding="0dp"
 	        android:src="@drawable/comone"
 	        android:background="@android:color/transparent"
+	        android:onClick="buttonClicked"
 	        android:contentDescription="@string/com1" />
 
         	<ImageButton
@@ -34,6 +37,7 @@
 	        android:padding="0dp"
 	        android:src="@drawable/comtwo"
 	        android:background="@android:color/transparent"
+	        android:onClick="buttonClicked"
 	        android:contentDescription="@string/com2" />
         	<!--  
         	<ImageButton
@@ -81,19 +85,17 @@
     <org.bitbucket.mjanczykowski.falconicp.DataEntryDisplay
         android:id="@+id/ded"
         android:layout_width="fill_parent"
-        android:layout_height="110dp"
-        android:layout_below="@id/functionkeys"
+        android:layout_height="100dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp" />
     
     <RelativeLayout
         android:id="@+id/keypad"
-        android:layout_below="@id/ded"
         android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
+    	android:layout_weight="1"
     	android:gravity="center"
     	android:background="#101010"
-    	android:paddingTop="20dp"
     	android:paddingLeft="10dp"
     	android:paddingRight="10dp" >
 	        <ImageButton
@@ -228,9 +230,9 @@
     
     <RelativeLayout
         android:id="@+id/switches"
-        android:layout_below="@id/keypad"
         android:layout_width="fill_parent"
-    	android:layout_height="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_weight="1"
     	android:gravity="center_horizontal"
     	android:background="#101010"
     	android:padding="0dp" >
@@ -241,13 +243,12 @@
 	        android:layout_height="wrap_content"
 	        android:background="@android:color/transparent"
 	        android:layout_alignParentLeft="true"
-	        android:layout_alignParentTop="true"
 	        android:layout_marginLeft="5dp"
-	        android:layout_marginTop="30dp"
+	        android:layout_marginTop="12dp"
 	        android:paddingLeft="5dp"
 	        android:paddingRight="5dp"
-	        android:paddingTop="20dp"
 	        android:paddingBottom="0dp"
+	        android:paddingTop="10dp"
 	        android:src="@drawable/arrowup"
 	        android:contentDescription="@string/arrow_up" />
 	        
@@ -263,7 +264,7 @@
 	        android:paddingLeft="5dp"
 	        android:paddingRight="5dp"
 	        android:paddingTop="0dp"
-	        android:paddingBottom="20dp"
+	        android:paddingBottom="10dp"
 	        android:src="@drawable/arrowdown"
 	        android:contentDescription="@string/arrow_down" />
 	        
@@ -274,11 +275,10 @@
 	        android:layout_toRightOf="@id/ICPArrowUp"
 	        android:paddingLeft="0dp"
 	        android:paddingRight="0dp"
-	        android:paddingTop="10dp"
-	        android:paddingBottom="10dp"
+	        android:paddingTop="5dp"
+	        android:paddingBottom="0dp"
 	        android:layout_marginLeft="10dp"
 	        android:layout_alignParentTop="true"
-	        android:layout_marginTop="20dp"
 	        android:src="@drawable/dcs_center"
 	        android:contentDescription="@string/dcs" />
 	        
@@ -289,12 +289,11 @@
 	        android:layout_toRightOf="@id/DCS"
 	        android:paddingLeft="0dp"
 	        android:paddingRight="0dp"
-	        android:paddingTop="10dp"
-	        android:paddingBottom="10dp"
+	        android:paddingTop="5dp"
+	        android:paddingBottom="0dp"
 	        android:layout_marginLeft="5dp"
 	        android:layout_alignParentTop="true"
-	        android:layout_marginTop="20dp"
 	        android:src="@drawable/driftwarn_center"
 	        android:contentDescription="@string/driftwarn" />
 	</RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

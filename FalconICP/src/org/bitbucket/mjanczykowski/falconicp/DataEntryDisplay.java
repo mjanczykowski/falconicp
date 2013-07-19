@@ -51,7 +51,7 @@ public class DataEntryDisplay extends SurfaceView implements SurfaceHolder.Callb
      */
 	@Override
 	public void onWindowFocusChanged(boolean hasWindowFocus) {
-		if (!hasWindowFocus) {
+		if (!hasWindowFocus && thread != null) {
 			thread.pause();
 		}
 	}

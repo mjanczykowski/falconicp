@@ -8,6 +8,10 @@
 package org.bitbucket.mjanczykowski.falconicp;
 
 public final class R {
+    public static final class array {
+        public static final int menu_connected=0x7f070000;
+        public static final int menu_disconnected=0x7f070001;
+    }
     public static final class attr {
     }
     public static final class dimen {
@@ -94,43 +98,43 @@ public final class R {
         public static final int mask=0x7f020046;
     }
     public static final class id {
-        public static final int AAButton=0x7f090004;
-        public static final int AGButton=0x7f090005;
-        public static final int COM1Button=0x7f090001;
-        public static final int COM2Button=0x7f090002;
-        public static final int DCS=0x7f090017;
-        public static final int DriftWarn=0x7f090018;
-        public static final int ICPArrowDown=0x7f090016;
-        public static final int ICPArrowUp=0x7f090015;
-        public static final int ICPButton0=0x7f090013;
-        public static final int ICPButton1=0x7f090008;
-        public static final int ICPButton2=0x7f090009;
-        public static final int ICPButton3=0x7f09000a;
-        public static final int ICPButton4=0x7f09000c;
-        public static final int ICPButton5=0x7f09000d;
-        public static final int ICPButton6=0x7f09000e;
-        public static final int ICPButton7=0x7f090010;
-        public static final int ICPButton8=0x7f090011;
-        public static final int ICPButton9=0x7f090012;
-        public static final int ICPButtonENTR=0x7f09000f;
-        public static final int ICPButtonRCL=0x7f09000b;
-        public static final int ImageButton01=0x7f09001d;
-        public static final int ImageButton02=0x7f09001c;
-        public static final int ImageButton03=0x7f09001b;
-        public static final int ListButton=0x7f090003;
-        public static final int action_settings=0x7f09001e;
-        public static final int ded=0x7f090006;
-        public static final int functionkeys=0x7f090000;
-        public static final int imageButton1=0x7f090019;
-        public static final int keypad=0x7f090007;
-        public static final int switches=0x7f090014;
-        public static final int textView1=0x7f09001a;
+        public static final int AAButton=0x7f0a0004;
+        public static final int AGButton=0x7f0a0005;
+        public static final int COM1Button=0x7f0a0001;
+        public static final int COM2Button=0x7f0a0002;
+        public static final int DCS=0x7f0a0017;
+        public static final int DriftWarn=0x7f0a0018;
+        public static final int ICPArrowDown=0x7f0a0016;
+        public static final int ICPArrowUp=0x7f0a0015;
+        public static final int ICPButton0=0x7f0a0013;
+        public static final int ICPButton1=0x7f0a0008;
+        public static final int ICPButton2=0x7f0a0009;
+        public static final int ICPButton3=0x7f0a000a;
+        public static final int ICPButton4=0x7f0a000c;
+        public static final int ICPButton5=0x7f0a000d;
+        public static final int ICPButton6=0x7f0a000e;
+        public static final int ICPButton7=0x7f0a0010;
+        public static final int ICPButton8=0x7f0a0011;
+        public static final int ICPButton9=0x7f0a0012;
+        public static final int ICPButtonENTR=0x7f0a000f;
+        public static final int ICPButtonRCL=0x7f0a000b;
+        public static final int ImageButton01=0x7f0a001d;
+        public static final int ImageButton02=0x7f0a001c;
+        public static final int ImageButton03=0x7f0a001b;
+        public static final int ListButton=0x7f0a0003;
+        public static final int action_settings=0x7f0a001e;
+        public static final int ded=0x7f0a0006;
+        public static final int functionkeys=0x7f0a0000;
+        public static final int imageButton1=0x7f0a0019;
+        public static final int keypad=0x7f0a0007;
+        public static final int switches=0x7f0a0014;
+        public static final int textView1=0x7f0a001a;
     }
     public static final class layout {
         public static final int activity_icp=0x7f030000;
     }
     public static final class menu {
-        public static final int icp=0x7f080000;
+        public static final int icp=0x7f090000;
     }
     public static final class string {
         public static final int aa=0x7f060012;
@@ -157,6 +161,10 @@ public final class R {
         public static final int icpbuttonrcl=0x7f06000c;
         public static final int iff=0x7f060010;
         public static final int list=0x7f060011;
+        public static final int menu_connect=0x7f060026;
+        public static final int menu_disconnect=0x7f060027;
+        public static final int menu_exit=0x7f060029;
+        public static final int menu_settings=0x7f060028;
         public static final int pref_connection_title=0x7f060018;
         public static final int pref_display_title=0x7f060021;
         public static final int pref_summary_autoconnect=0x7f06001f;
@@ -194,11 +202,11 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
     public static final class xml {
         public static final int preferences=0x7f040000;
