@@ -54,6 +54,8 @@ public class MenuDialogFragment extends DialogFragment {
 	
 	@Override 
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		Log.v("menu dialog", "onCreateDialog");
+		
 		final boolean connected = getArguments().getBoolean("connected");
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

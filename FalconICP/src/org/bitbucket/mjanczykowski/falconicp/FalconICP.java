@@ -1,26 +1,35 @@
 package org.bitbucket.mjanczykowski.falconicp;
 
+import java.lang.ref.WeakReference;
+
+import org.bitbucket.mjanczykowski.falconicp.DCSView.DCSViewListener;
+import org.bitbucket.mjanczykowski.falconicp.DriftWarnSwitch.DriftWarnListener;
 import org.bitbucket.mjanczykowski.falconicp.MenuDialogFragment.MenuDialogListener;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
-public class FalconICP extends FragmentActivity implements MenuDialogListener {
+public class FalconICP extends FragmentActivity implements MenuDialogListener, DCSViewListener, DriftWarnListener {
 	
-	private DataEntryDisplay dedView;
-	private DataEntryDisplayThread dedThread;
+	private DEDView dedView;
+	private TcpClientThread tcpThread;
 	private MenuDialogFragment menuFragment = null;
 	private boolean connected = false;
+	
+	private final IncomingHandler handler = new IncomingHandler(this);
+	private byte[][] dedLines = new byte[5][26]; 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +41,14 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener {
         
         setContentView(R.layout.activity_icp);
 
-        dedView = (DataEntryDisplay) findViewById(R.id.ded);
+        dedView = (DEDView) findViewById(R.id.ded);
+        dedView.setDedLines(dedLines);
+        
+        DCSView dcs = (DCSView) findViewById(R.id.DCS);
+        dcs.setActionListener(this);
+        
+        DriftWarnSwitch dws = (DriftWarnSwitch) findViewById(R.id.DriftWarn);
+        dws.setActionListener(this);
     }
     
     @Override
@@ -41,7 +57,7 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener {
     	
     	Log.v("activity state", "onStart");
     	
-    	dedThread = (DataEntryDisplayThread) dedView.getThread();    	
+    	//dedThread = (DataEntryDisplayThread) dedView.getThread();
     }
     
     @Override
@@ -65,13 +81,32 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener {
     	else {
     		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     	}
+    	
+    	if(sp.getBoolean(Settings.KEY_AUTOCONNECT, false) == true) {
+    		connect();
+    	}
+    	else {
+    		showMenuDialog();
+    	}
     }
     
     @Override
     protected void onPause() {
     	super.onPause();
     	
+    	disconnect();
+    	
+    	if(menuFragment != null) {
+    		menuFragment.dismiss();
+    		menuFragment = null;
+    	}
+    	
     	Log.v("activity state", "onPause");
+    }
+    
+    @Override
+    protected void onDestroy() {
+    	super.onDestroy();
     }
 
     @Override
@@ -81,7 +116,7 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener {
     	showMenuDialog();
         return true;
     }
-    
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
     	// Handle item selection
@@ -93,9 +128,15 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener {
     			return super.onOptionsItemSelected(item);
     	}
     }
-    
+    */
     public void buttonClicked(View view) {
-    	showMenuDialog();
+    	if(connected) {
+    		String callback = (String)view.getTag();
+    		if(callback != null) {
+    			Log.v("buttonCliced", callback);
+    			tcpThread.sendCallback(callback);
+    		}
+    	}
     }
     
     public void showMenuDialog() {
@@ -103,7 +144,6 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener {
     	
     	if(menuFragment != null) {
     		menuFragment.dismiss();
-    		connected = !connected;
     	}
     	menuFragment = MenuDialogFragment.newInstance(connected);
         menuFragment.show(getSupportFragmentManager(), "MenuDialogFragment");
@@ -121,18 +161,156 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener {
 
 	@Override
 	public void onMenuConnectClick(DialogFragment dialog) {
-		// TODO Auto-generated method stub
-		
+		connect();		
 	}
 
 	@Override
 	public void onMenuDisconnectClick(DialogFragment dialog) {
-		// TODO Auto-generated method stub
-		
+		disconnect();		
 	}
 
 	@Override
 	public void onMenuDismiss(DialogFragment dialog) {
 		menuFragment = null;
+	}
+	
+	/**
+	 * Runs client thread and tries to connect to the server.
+	 */
+	private void connect()
+	{
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+		tcpThread = new TcpClientThread(sp.getString(Settings.KEY_SERVER_IP, "192.168.0.1"), Integer.parseInt(sp.getString(Settings.KEY_SERVER_PORT, "30456")), handler);
+		tcpThread.setDedLines(dedLines);
+		tcpThread.start();
+		
+		connected = true;
+		
+		if(menuFragment != null) {
+			menuFragment.dismiss();
+		}
+	}
+	
+	/**
+	 * Stops client thread if one exists.
+	 */
+	private void disconnect()
+	{
+		connected = false;
+		if(tcpThread != null)
+		{
+			tcpThread.closeThread();
+	    	tcpThread = null;
+		}
+		showMenuDialog();
+	}
+	
+	/**
+	 * Show toast with information about connection state.
+	 * @param text Information to show
+	 */
+	private void showToast(String text) {
+		int duration = Toast.LENGTH_SHORT;
+		
+		Toast.makeText(getApplicationContext(), text, duration).show();
+	}
+	
+	/**
+	 * Static class for incoming transmission handler.
+	 * Using WeakReferences to avoid memory leaks.
+	 */
+	static class IncomingHandler extends Handler {
+		private final WeakReference<FalconICP> ref;
+		
+		public IncomingHandler(FalconICP ref) {
+			this.ref = new WeakReference<FalconICP>(ref);
+		}
+		
+		@Override
+		public void handleMessage(Message msg) {
+			FalconICP icp = ref.get();
+			
+			String txt = (String)msg.obj;
+			if(txt == null) {
+				txt = "";
+			}
+			
+			switch(msg.what) {
+				case DATA:
+					Log.v("message", "data");
+					icp.dedView.invalidate();
+					break;
+				case CONNECTED:
+					Log.v("message", "connected");
+					icp.connected = true;
+					icp.showToast("Connected to " + txt);
+					break;
+				case DISCONNECTED:
+					Log.v("message", "disconnected");
+					icp.connected = false;
+					icp.tcpThread = null;
+					icp.showToast("Disconnected");
+					break;
+				case CONNECTION_ERROR:
+					Log.v("message", "connection_error");
+					icp.connected = false;
+					icp.tcpThread = null;
+					icp.showToast("Connection error: " + txt);
+					icp.showMenuDialog();
+					break;
+			}
+		}
+		
+		public static final int CONNECTED = 1;
+		public static final int DISCONNECTED = 2;
+		public static final int CONNECTION_ERROR = 3;
+		public static final int DATA = 4;
+	}
+
+	@Override
+	public void onDCSMove(DCSView.State state) {
+		if(!connected) {
+			return;
+		}
+		String callback;
+		switch(state) {
+			case LEFT:
+				callback = "SimICPResetDED";
+				break;
+			case RIGHT:
+				callback = "SimICPDEDSEQ";
+				break;
+			case UP:
+				callback = "SimICPDEDUP";
+				break;
+			case DOWN:
+				callback = "SimICPDEDDOWN";
+				break;
+			default:
+				callback = "";
+		}
+		tcpThread.sendCallback(callback);
+	}
+
+	@Override
+	public void onDriftWarnSwitch(DriftWarnSwitch.State state) {
+		if(!connected) {
+			return;
+		}
+		String callback;
+		switch(state) {
+			case DRIFT_CO:
+				callback = "SimDriftCOOn";
+				break;
+			case NORM:
+				callback = "SimDriftCOOff";
+				break;
+			case WARN_RESET:
+				callback = "SimWarnReset";
+				break;
+			default:
+				callback = "";
+		}
+		tcpThread.sendCallback(callback);
 	}
 }

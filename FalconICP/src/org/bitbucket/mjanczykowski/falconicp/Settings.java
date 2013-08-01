@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.view.WindowManager;
 
 public class Settings extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 	public static final String KEY_SERVER_IP = "pref_key_server_ip";
@@ -19,7 +20,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	private EditTextPreference mTimeoutPreference;
 
 	public Settings() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@Override
@@ -42,6 +43,14 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		super.onResume();
 		// Setup initial values
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
+		
+		if(sharedPreferences.getBoolean(Settings.KEY_FULLSCREEN, true) == true) {
+    		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    	}
+    	else {
+    		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    	}
+		
 		mServerIPPreference.setSummary(sharedPreferences.getString(KEY_SERVER_IP, null));
 		mServerPortPreference.setSummary(sharedPreferences.getString(KEY_SERVER_PORT, null));
 		mTimeoutPreference.setSummary(sharedPreferences.getString(KEY_TIMEOUT, null));

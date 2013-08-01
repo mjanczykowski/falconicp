@@ -8,6 +8,13 @@ import android.widget.ImageView;
 
 public class DriftWarnSwitch extends ImageView {
 	
+	public interface DriftWarnListener {
+		public void onDriftWarnSwitch(State state);
+	}
+	
+	/** Activity listening for dialog actions */ 
+	private DriftWarnListener mListener = null;
+	
 	/** Indicates position of the switch */
 	private State state = State.NORM;
 	private State previousState = State.NORM;
@@ -45,6 +52,9 @@ public class DriftWarnSwitch extends ImageView {
 			case MotionEvent.ACTION_UP:
 				if(state != previousState) {
 					Log.i("DriftWarn action", state.toString());
+					if(mListener != null) {
+						mListener.onDriftWarnSwitch(state);
+					}
 					// perform action
 					if(state == State.WARN_RESET)
 						setState(State.NORM);
@@ -53,6 +63,14 @@ public class DriftWarnSwitch extends ImageView {
 			default:
 				return false;
 		}
+	}
+	
+	/**
+	 * Sets action listener.
+	 * @param l Action listener
+	 */
+	public void setActionListener(DriftWarnListener l) {
+		mListener = l;
 	}
 	
 	public void setState(State s) {

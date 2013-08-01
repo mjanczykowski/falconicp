@@ -4,16 +4,17 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 public class DEDFont {
 	/** The table of complete font to cut from */
 	private final Bitmap _font;
 	
 	/** Array of bitmaps representing single signs */
-	private final Bitmap[] _charBitmaps = new Bitmap[256];
+	private final Bitmap[] _charBitmaps = new Bitmap[128];
 	
 	/** Array of bitmaps representing single signs in inverted colors */ 
-	private final Bitmap[] _invertedCharBitmaps = new Bitmap[256];
+	private final Bitmap[] _invertedCharBitmaps = new Bitmap[128];
 	
 	private int charWidth = 0;
 	private int charHeight = 0;
@@ -31,7 +32,12 @@ public class DEDFont {
 	 * @param inverted - false for normal colors, true for inverted colors
 	 * @return bitmap of char
 	 */
-	public Bitmap getCharImage(byte b, boolean inverted) {
+	public Bitmap getCharImage(byte b) {
+		boolean inverted = false;
+		if(b < 0) {
+			inverted = true;
+			b += 128;
+		}
 		if(b >= 32) {
 			b -= 32;
 		}
@@ -40,6 +46,7 @@ public class DEDFont {
 		if(inverted)
 			charArray = _invertedCharBitmaps;
 		
+		try{
 		if(charArray[b] == null) {
 			int leftX = (b % 16) * charWidth;
 			int topY = (b / 16) * charHeight;
@@ -50,6 +57,10 @@ public class DEDFont {
 			Bitmap charImage = Bitmap.createBitmap(_font, leftX, topY, charWidth, charHeight);
 			//store it in cache of char images
 			charArray[b] = charImage;
+		}
+		}
+		catch(Exception e) {
+			Log.wtf("outofbounds", String.valueOf(b));
 		}
 		
 		return charArray[b];

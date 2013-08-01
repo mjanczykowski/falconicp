@@ -27,7 +27,8 @@
 	        android:src="@drawable/comone"
 	        android:background="@android:color/transparent"
 	        android:onClick="buttonClicked"
-	        android:contentDescription="@string/com1" />
+	        android:contentDescription="@string/com1"
+	        android:tag="SimICPCom1" />
 
         	<ImageButton
 	        android:id="@+id/COM2Button"
@@ -38,7 +39,8 @@
 	        android:src="@drawable/comtwo"
 	        android:background="@android:color/transparent"
 	        android:onClick="buttonClicked"
-	        android:contentDescription="@string/com2" />
+	        android:contentDescription="@string/com2"
+	        android:tag="SimICPCom2" />
         	<!--  
         	<ImageButton
 	        android:id="@+id/IFFButton"
@@ -58,7 +60,9 @@
 	        android:padding="0dp"
 	        android:src="@drawable/list"
 	        android:background="@android:color/transparent"
-	        android:contentDescription="@string/list" />
+	        android:onClick="buttonClicked"
+	        android:contentDescription="@string/list"
+	        android:tag="SimICPLIST" />
         	
         	<ImageButton
 	        android:id="@+id/AAButton"
@@ -68,7 +72,9 @@
 	        android:padding="0dp"
 	        android:src="@drawable/aa"
 	        android:background="@android:color/transparent"
-	        android:contentDescription="@string/aa" />
+	        android:onClick="buttonClicked"
+	        android:contentDescription="@string/aa"
+	        android:tag="SimICPAA" />
 
         	<ImageButton
        	    android:id="@+id/AGButton"
@@ -76,13 +82,15 @@
        	    android:layout_height="fill_parent"
        	    android:layout_weight="1"
        	    android:background="@android:color/transparent"
+	        android:onClick="buttonClicked"
        	    android:contentDescription="@string/ag"
        	    android:padding="0dp"
-       	    android:src="@drawable/ag" />
+       	    android:src="@drawable/ag"
+	        android:tag="SimICPAG" />
         	
     </LinearLayout>
     
-    <org.bitbucket.mjanczykowski.falconicp.DataEntryDisplay
+    <org.bitbucket.mjanczykowski.falconicp.DEDView
         android:id="@+id/ded"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
@@ -106,7 +114,9 @@
 	        android:layout_alignParentLeft="true"
 	        android:padding="0dp"
 	        android:src="@drawable/button1"
-	        android:contentDescription="@string/icpbutton1" />
+	        android:contentDescription="@string/icpbutton1"
+	        android:onClick="buttonClicked"
+	        android:tag="SimICPTILS" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPButton2"
@@ -116,7 +126,9 @@
 	        android:padding="0dp"
 	        android:layout_marginLeft="20dp"
 	        android:src="@drawable/button2"
-	        android:contentDescription="@string/icpbutton2" />
+	        android:contentDescription="@string/icpbutton2"
+	        android:onClick="buttonClicked"
+	        android:tag="SimICPALOW" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPButton3"
@@ -126,7 +138,9 @@
 	        android:padding="0dp"
 	        android:layout_marginLeft="20dp"
 	        android:src="@drawable/button3"
-	        android:contentDescription="@string/icpbutton3" />
+	        android:contentDescription="@string/icpbutton3"
+	        android:onClick="buttonClicked"
+	        android:tag="SimICPTHREE" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPButtonRCL"
@@ -136,7 +150,9 @@
 	        android:padding="0dp"
 	        android:layout_marginLeft="40dp"
 	        android:src="@drawable/button_rcl"
-	        android:contentDescription="@string/icpbuttonrcl" />
+	        android:contentDescription="@string/icpbuttonrcl"
+			android:onClick="buttonClicked"
+	        android:tag="SimICPCLEAR" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPButton4"
@@ -147,7 +163,9 @@
 	        android:layout_marginTop="20dp"
 	        android:padding="0dp"
 	        android:src="@drawable/button4"
-	        android:contentDescription="@string/icpbutton4" />
+	        android:contentDescription="@string/icpbutton4"
+	        android:onClick="buttonClicked"
+	        android:tag="SimICPStpt" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPButton5"
@@ -158,7 +176,9 @@
 	        android:layout_marginLeft="20dp"
 	        android:layout_alignTop="@id/ICPButton4"
 	        android:src="@drawable/button5"
-	        android:contentDescription="@string/icpbutton5" />
+	        android:contentDescription="@string/icpbutton5"
+	        android:onClick="buttonClicked"
+	        android:tag="SimICPCrus" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPButton6"
@@ -169,7 +189,9 @@
 	        android:padding="0dp"
 	        android:layout_marginLeft="20dp"
 	        android:src="@drawable/button6"
-	        android:contentDescription="@string/icpbutton6" />
+	        android:contentDescription="@string/icpbutton6"
+	        android:onClick="buttonClicked"
+	        android:tag="SimICPSIX" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPButtonENTR"
@@ -180,7 +202,9 @@
 	        android:padding="0dp"
 	        android:layout_marginLeft="40dp"
 	        android:src="@drawable/button_entr"
-	        android:contentDescription="@string/icpbuttonent" />
+	        android:contentDescription="@string/icpbuttonent"
+	        android:onClick="buttonClicked"
+	        android:tag="SimICPEnter" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPButton7"
@@ -191,7 +215,9 @@
 	        android:layout_marginTop="20dp"
 	        android:padding="0dp"
 	        android:src="@drawable/button7"
-	        android:contentDescription="@string/icpbutton7" />
+	        android:contentDescription="@string/icpbutton7"
+	        android:onClick="buttonClicked"
+	        android:tag="SimICPMark" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPButton8"
@@ -202,7 +228,9 @@
 	        android:layout_marginLeft="20dp"
 	        android:layout_alignTop="@id/ICPButton7"
 	        android:src="@drawable/button8"
-	        android:contentDescription="@string/icpbutton8" />
+	        android:contentDescription="@string/icpbutton8"
+	        android:onClick="buttonClicked"
+	        android:tag="SimICPEIGHT" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPButton9"
@@ -213,7 +241,9 @@
 	        android:padding="0dp"
 	        android:layout_marginLeft="20dp"
 	        android:src="@drawable/button9"
-	        android:contentDescription="@string/icpbutton9" />
+	        android:contentDescription="@string/icpbutton9"
+	        android:onClick="buttonClicked"
+	        android:tag="SimICPNINE" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPButton0"
@@ -224,7 +254,9 @@
 	        android:padding="0dp"
 	        android:layout_marginLeft="20dp"
 	        android:src="@drawable/button0"
-	        android:contentDescription="@string/icpbutton0" />
+	        android:contentDescription="@string/icpbutton0"
+	        android:onClick="buttonClicked"
+	        android:tag="SimICPZERO" />
 
     </RelativeLayout>
     
@@ -242,6 +274,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@android:color/transparent"
+	        android:onClick="buttonClicked"
 	        android:layout_alignParentLeft="true"
 	        android:layout_marginLeft="5dp"
 	        android:layout_marginTop="12dp"
@@ -250,13 +283,15 @@
 	        android:paddingBottom="0dp"
 	        android:paddingTop="10dp"
 	        android:src="@drawable/arrowup"
-	        android:contentDescription="@string/arrow_up" />
+	        android:contentDescription="@string/arrow_up"
+	        android:tag="SimICPNext" />
 	        
 	        <ImageButton
 	        android:id="@+id/ICPArrowDown"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:background="@android:color/transparent"
+	        android:onClick="buttonClicked"
 	        android:layout_alignParentLeft="true"
 	        android:layout_below="@id/ICPArrowUp"
 	        android:layout_marginTop="0dp"
@@ -266,7 +301,8 @@
 	        android:paddingTop="0dp"
 	        android:paddingBottom="10dp"
 	        android:src="@drawable/arrowdown"
-	        android:contentDescription="@string/arrow_down" />
+	        android:contentDescription="@string/arrow_down"
+	        android:tag="SimICPPrevious" />
 	        
 	        <org.bitbucket.mjanczykowski.falconicp.DCSView
 	        android:id="@+id/DCS"

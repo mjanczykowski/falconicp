@@ -18,9 +18,6 @@ public class DataEntryDisplayThread extends Thread {
 	/** Indicates whether the surface has been created and is ready to draw */
 	private boolean mRun = false;
 	
-	/** Indicates whether the connection is currently established */
-	private boolean connected = false;
-	
 	/** Handle to DED font converter */
 	private DEDFont font;
 	
@@ -49,13 +46,12 @@ public class DataEntryDisplayThread extends Thread {
 	
 	@Override
 	public void run() {
-		Log.i("DEDThread state", "Thread started");
 		while(mRun) {
 			Canvas c = null;
 			try {
 				c = mSurfaceHolder.lockCanvas(null);
 				synchronized(mSurfaceHolder) {
-					//TO-DO - update DED lines from tcp connection
+					//TODO - update DED lines from tcp connection
 					dedLines[0][10] = 67;
 					dedLines[0][11] = 68;
 					dedLines[0][12] = 69;
@@ -138,10 +134,10 @@ public class DataEntryDisplayThread extends Thread {
 			int leftX = 0;
 			for(int j = 0; j < 25; j++) {
 				if(dedLines[i][j] != 0) {
-					canvas.drawBitmap(font.getCharImage(dedLines[i][j], false), leftX, topY, p);
+					canvas.drawBitmap(font.getCharImage(dedLines[i][j]), leftX, topY, p);
 				}
 				else if(dedLinesInverted[i][j] != 0) {
-					canvas.drawBitmap(font.getCharImage(dedLinesInverted[i][j], true), leftX, topY, p);
+					canvas.drawBitmap(font.getCharImage(dedLinesInverted[i][j]), leftX, topY, p);
 				}
 				leftX += STEP_X;
 			}

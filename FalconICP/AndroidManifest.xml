@@ -27,5 +27,7 @@
         	android:screenOrientation="portrait"
         	android:theme="@android:style/Theme" />"
     </application>
+    
+	<uses-permission android:name="android.permission.INTERNET" /> 
 
 </manifest>

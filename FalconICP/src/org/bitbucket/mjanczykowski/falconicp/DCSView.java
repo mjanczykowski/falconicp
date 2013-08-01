@@ -8,6 +8,13 @@ import android.widget.ImageView;
 
 public class DCSView extends ImageView {
 	
+	public interface DCSViewListener {
+		public void onDCSMove(State state);
+	}
+	
+	/** Activity listening for dialog actions */ 
+	private DCSViewListener mListener = null;
+	
 	/* Indicates current direction of the DCS stick */
 	private State state = State.CENTER;
 	
@@ -60,12 +67,23 @@ public class DCSView extends ImageView {
 				if(state != State.CENTER) {
 					Log.i("DCS action", state.toString());
 					//TO-DO run action if state != center
+					if(mListener != null) {
+						mListener.onDCSMove(state);
+					}
 					setState(State.CENTER);
 				}
 				return true;
 			default:
 				return false;
 		}
+	}
+	
+	/**
+	 * Sets action listener.
+	 * @param l Object with DCSViewListener interface
+	 */
+	public void setActionListener(DCSViewListener l) {
+		mListener = l;
 	}
 	
 	/**
@@ -98,7 +116,7 @@ public class DCSView extends ImageView {
 	}
 	
 	/** States of DCS switch - direction of the stick */
-	private enum State {
+	public enum State {
 		CENTER, LEFT, UP, RIGHT, DOWN;
 	}
 }
