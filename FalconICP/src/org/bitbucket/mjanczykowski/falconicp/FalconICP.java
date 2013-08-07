@@ -6,6 +6,8 @@ import org.bitbucket.mjanczykowski.falconicp.DCSView.DCSViewListener;
 import org.bitbucket.mjanczykowski.falconicp.DriftWarnSwitch.DriftWarnListener;
 import org.bitbucket.mjanczykowski.falconicp.MenuDialogFragment.MenuDialogListener;
 
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -56,8 +59,6 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
     	super.onStart();
     	
     	Log.v("activity state", "onStart");
-    	
-    	//dedThread = (DataEntryDisplayThread) dedView.getThread();
     }
     
     @Override
@@ -107,6 +108,7 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
     @Override
     protected void onDestroy() {
     	super.onDestroy();
+    	Log.v("activity state", "onDestroy");
     }
 
     @Override
@@ -133,7 +135,7 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
     	if(connected) {
     		String callback = (String)view.getTag();
     		if(callback != null) {
-    			Log.v("buttonCliced", callback);
+    			Log.v("buttonClicked", callback);
     			tcpThread.sendCallback(callback);
     		}
     	}
@@ -146,7 +148,7 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
     		menuFragment.dismiss();
     	}
     	menuFragment = MenuDialogFragment.newInstance(connected);
-        menuFragment.show(getSupportFragmentManager(), "MenuDialogFragment");
+    	menuFragment.show(getSupportFragmentManager(), "MenuDialogFragment");
     }
 
 	@Override
@@ -180,10 +182,11 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 	private void connect()
 	{
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-		tcpThread = new TcpClientThread(sp.getString(Settings.KEY_SERVER_IP, "192.168.0.1"), Integer.parseInt(sp.getString(Settings.KEY_SERVER_PORT, "30456")), handler);
+		tcpThread = new TcpClientThread(sp.getString(Settings.KEY_SERVER_IP, "192.168.0.1"), Integer.parseInt(sp.getString(Settings.KEY_SERVER_PORT, "30456")), Integer.parseInt(sp.getString(Settings.KEY_TIMEOUT, "2000")), handler);
 		tcpThread.setDedLines(dedLines);
+		Log.d("main thread", "starting tcp thread");
 		tcpThread.start();
-		
+		Log.d("main thread", "tcp thread started");
 		connected = true;
 		
 		if(menuFragment != null) {
@@ -202,7 +205,6 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 			tcpThread.closeThread();
 	    	tcpThread = null;
 		}
-		showMenuDialog();
 	}
 	
 	/**
@@ -250,6 +252,7 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 					icp.connected = false;
 					icp.tcpThread = null;
 					icp.showToast("Disconnected");
+					icp.showMenuDialog();
 					break;
 				case CONNECTION_ERROR:
 					Log.v("message", "connection_error");

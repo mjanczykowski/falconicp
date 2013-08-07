@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnKeyListener;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
+import android.view.KeyEvent;
 
 public class MenuDialogFragment extends DialogFragment {
 
@@ -95,7 +97,21 @@ public class MenuDialogFragment extends DialogFragment {
 					// TODO
 				}
 			});
+		
+		if(!connected) {
+        	builder.setOnKeyListener(new OnKeyListener() {
 
+				@Override
+				public boolean onKey(DialogInterface arg0, int keyCode, KeyEvent event) {
+					if(keyCode == KeyEvent.KEYCODE_BACK) {
+						mListener.onMenuExitClick(MenuDialogFragment.this);
+					}
+					return false;
+				}
+        		
+        	});
+        }
+		
 		return builder.create();
 	}
 	

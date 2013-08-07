@@ -3,7 +3,9 @@ package org.bitbucket.mjanczykowski.falconicp;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import org.bitbucket.mjanczykowski.falconicp.FalconICP.IncomingHandler;
@@ -18,6 +20,7 @@ public class TcpClientThread extends Thread {
 	
 	private String serverIP;
 	private int serverPort;
+	private int timeout;
 	
 	/* Connection */
 	private Socket socket;
@@ -28,10 +31,11 @@ public class TcpClientThread extends Thread {
 	private IncomingHandler handler;
 	private byte[][] dedLines;
 
-	public TcpClientThread(String serverIP, int serverPort, IncomingHandler handler) {
+	public TcpClientThread(String serverIP, int serverPort, int timeout, IncomingHandler handler) {
 		this.serverIP = serverIP;
 		this.serverPort = serverPort;
 		this.handler = handler;
+		this.timeout = timeout;
 	}
 	
 	@Override
@@ -41,11 +45,10 @@ public class TcpClientThread extends Thread {
 		try {
 			Log.i("tcp thread", "Connecting to server: " + serverIP + ", " + serverPort);
 			
-			synchronized(this) {
-				socket = new Socket(serverIP, serverPort);
-				out = new PrintWriter(socket.getOutputStream(), true);
-				in = socket.getInputStream();
-			}
+			socket = new Socket();
+			socket.connect(new InetSocketAddress(serverIP, serverPort), timeout);
+			out = new PrintWriter(socket.getOutputStream(), true);
+			in = socket.getInputStream();
 			
 			Log.i("tcp thread", "connected");
 			
@@ -87,11 +90,21 @@ public class TcpClientThread extends Thread {
 			sendHandlerMessage(IncomingHandler.DISCONNECTED, "");
 			
 		} catch (UnknownHostException e) {
-			Log.d("tcp thread", "UnknownHostException" + e.getMessage());
+			Log.d("tcp thread", "UnknownHostException " + e.getMessage());
 			sendHandlerMessage(IncomingHandler.CONNECTION_ERROR, e.getMessage());
+		} catch (SocketException e) {
+			Log.d("tcp thread", "SocketException " + e.getMessage());
+			String msg = e.getMessage();
+			if(msg.equals("Bad file number")) {
+				msg = "Interrupted";
+			}
+			sendHandlerMessage(IncomingHandler.CONNECTION_ERROR, msg);
 		} catch (IOException e) {
-			Log.d("tcp thread", "IOException" + e.getMessage());
+			Log.d("tcp thread", "IOException " + e.getMessage());
 			sendHandlerMessage(IncomingHandler.CONNECTION_ERROR, e.getMessage());
+		} catch (IllegalArgumentException e) {
+			Log.d("tcp thread", "IllegalArgumentException " + e.getMessage());
+			sendHandlerMessage(IncomingHandler.CONNECTION_ERROR, "Invalid IP or port number.");
 		}
 		
 		Log.i("tcp thread", "closed");
