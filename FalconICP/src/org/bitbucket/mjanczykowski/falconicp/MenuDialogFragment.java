@@ -39,7 +39,6 @@ public class MenuDialogFragment extends DialogFragment {
 	}
 	
 	public MenuDialogFragment() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -94,7 +93,6 @@ public class MenuDialogFragment extends DialogFragment {
 							mListener.onMenuExitClick(MenuDialogFragment.this);
 							break;
 					}
-					// TODO
 				}
 			});
 		

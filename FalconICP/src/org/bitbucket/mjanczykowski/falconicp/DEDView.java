@@ -13,8 +13,6 @@ import android.view.View;
 
 public class DEDView extends View {
 	
-	//private Context dedContext;
-	
 	/** Handle to mask image */
 	private final Drawable maskImage;
 	
@@ -27,7 +25,6 @@ public class DEDView extends View {
 	private final int STEP_Y;
 	
 	private byte[][] dedLines = new byte[5][25];
-	//private byte[][] dedLinesInverted = new byte[5][25];
 	
 	private Paint p = new Paint();
 	private Paint inv_p = new Paint();
@@ -36,8 +33,6 @@ public class DEDView extends View {
 		super(context, attrs);
 		
 		maskImage = context.getResources().getDrawable(R.drawable.mask);
-		
-		//dedContext = context;
 		
 		font = new DEDFont(context);
 		

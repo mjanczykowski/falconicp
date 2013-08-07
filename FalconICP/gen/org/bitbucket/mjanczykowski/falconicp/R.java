@@ -119,17 +119,13 @@ public final class R {
         public static final int ICPButton9=0x7f0a0012;
         public static final int ICPButtonENTR=0x7f0a000f;
         public static final int ICPButtonRCL=0x7f0a000b;
-        public static final int ImageButton01=0x7f0a001d;
-        public static final int ImageButton02=0x7f0a001c;
-        public static final int ImageButton03=0x7f0a001b;
+        public static final int IFFButton=0x7f0a0019;
         public static final int ListButton=0x7f0a0003;
-        public static final int action_settings=0x7f0a001e;
+        public static final int action_settings=0x7f0a001a;
         public static final int ded=0x7f0a0006;
         public static final int functionkeys=0x7f0a0000;
-        public static final int imageButton1=0x7f0a0019;
         public static final int keypad=0x7f0a0007;
         public static final int switches=0x7f0a0014;
-        public static final int textView1=0x7f0a001a;
     }
     public static final class layout {
         public static final int activity_icp=0x7f030000;

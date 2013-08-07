@@ -66,7 +66,7 @@ public class DCSView extends ImageView {
 			case MotionEvent.ACTION_UP:
 				if(state != State.CENTER) {
 					Log.i("DCS action", state.toString());
-					//TO-DO run action if state != center
+
 					if(mListener != null) {
 						mListener.onDCSMove(state);
 					}

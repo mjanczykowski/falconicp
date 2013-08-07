@@ -24,7 +24,6 @@ public class DriftWarnSwitch extends ImageView {
 
 	public DriftWarnSwitch(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override

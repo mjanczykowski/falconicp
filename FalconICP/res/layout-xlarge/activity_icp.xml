@@ -15,8 +15,8 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:background="#101010"
-        android:paddingTop="5dp"
-        android:paddingBottom="10dp" >
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp" >
         
         	<ImageButton
 	        android:id="@+id/COM1Button"
@@ -41,7 +41,7 @@
 	        android:onClick="buttonClicked"
 	        android:contentDescription="@string/com2"
 	        android:tag="SimICPCom2" />
-        	<!--  
+        	
         	<ImageButton
 	        android:id="@+id/IFFButton"
 	        android:layout_width="wrap_content"
@@ -50,8 +50,9 @@
 	        android:padding="0dp"
 	        android:src="@drawable/iff"
 	        android:background="@android:color/transparent"
-	        android:contentDescription="@string/iff" />
-        	-->
+	        android:contentDescription="@string/iff"
+	        android:tag="SimICPIFF" />
+        	
         	<ImageButton
 	        android:id="@+id/ListButton"
 	        android:layout_width="wrap_content"
@@ -124,7 +125,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_toRightOf="@id/ICPButton1"
 	        android:padding="0dp"
-	        android:layout_marginLeft="20dp"
+	        android:layout_marginLeft="60dp"
 	        android:src="@drawable/button2"
 	        android:contentDescription="@string/icpbutton2"
 	        android:onClick="buttonClicked"
@@ -136,7 +137,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_toRightOf="@id/ICPButton2"
 	        android:padding="0dp"
-	        android:layout_marginLeft="20dp"
+	        android:layout_marginLeft="60dp"
 	        android:src="@drawable/button3"
 	        android:contentDescription="@string/icpbutton3"
 	        android:onClick="buttonClicked"
@@ -148,7 +149,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_toRightOf="@id/ICPButton3"
 	        android:padding="0dp"
-	        android:layout_marginLeft="40dp"
+	        android:layout_marginLeft="120dp"
 	        android:src="@drawable/button_rcl"
 	        android:contentDescription="@string/icpbuttonrcl"
 			android:onClick="buttonClicked"
@@ -160,7 +161,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentLeft="true"
 	        android:layout_below="@id/ICPButton1"
-	        android:layout_marginTop="20dp"
+	        android:layout_marginTop="60dp"
 	        android:padding="0dp"
 	        android:src="@drawable/button4"
 	        android:contentDescription="@string/icpbutton4"
@@ -173,7 +174,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_toRightOf="@id/ICPButton4"
 	        android:padding="0dp"
-	        android:layout_marginLeft="20dp"
+	        android:layout_marginLeft="60dp"
 	        android:layout_alignTop="@id/ICPButton4"
 	        android:src="@drawable/button5"
 	        android:contentDescription="@string/icpbutton5"
@@ -187,7 +188,7 @@
 	        android:layout_toRightOf="@id/ICPButton5"
 	        android:layout_alignTop="@id/ICPButton4"
 	        android:padding="0dp"
-	        android:layout_marginLeft="20dp"
+	        android:layout_marginLeft="60dp"
 	        android:src="@drawable/button6"
 	        android:contentDescription="@string/icpbutton6"
 	        android:onClick="buttonClicked"
@@ -200,7 +201,7 @@
 	        android:layout_toRightOf="@id/ICPButton6"
 	        android:layout_alignTop="@id/ICPButton4"
 	        android:padding="0dp"
-	        android:layout_marginLeft="40dp"
+	        android:layout_marginLeft="120dp"
 	        android:src="@drawable/button_entr"
 	        android:contentDescription="@string/icpbuttonent"
 	        android:onClick="buttonClicked"
@@ -212,7 +213,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentLeft="true"
 	        android:layout_below="@id/ICPButton4"
-	        android:layout_marginTop="20dp"
+	        android:layout_marginTop="60dp"
 	        android:padding="0dp"
 	        android:src="@drawable/button7"
 	        android:contentDescription="@string/icpbutton7"
@@ -225,7 +226,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_toRightOf="@id/ICPButton7"
 	        android:padding="0dp"
-	        android:layout_marginLeft="20dp"
+	        android:layout_marginLeft="60dp"
 	        android:layout_alignTop="@id/ICPButton7"
 	        android:src="@drawable/button8"
 	        android:contentDescription="@string/icpbutton8"
@@ -239,7 +240,7 @@
 	        android:layout_toRightOf="@id/ICPButton8"
 	        android:layout_alignTop="@id/ICPButton7"
 	        android:padding="0dp"
-	        android:layout_marginLeft="20dp"
+	        android:layout_marginLeft="60dp"
 	        android:src="@drawable/button9"
 	        android:contentDescription="@string/icpbutton9"
 	        android:onClick="buttonClicked"
@@ -252,7 +253,7 @@
 	        android:layout_toRightOf="@id/ICPButton9"
 	        android:layout_alignTop="@id/ICPButton7"
 	        android:padding="0dp"
-	        android:layout_marginLeft="20dp"
+	        android:layout_marginLeft="60dp"
 	        android:src="@drawable/button0"
 	        android:contentDescription="@string/icpbutton0"
 	        android:onClick="buttonClicked"
@@ -313,7 +314,7 @@
 	        android:paddingRight="0dp"
 	        android:paddingTop="5dp"
 	        android:paddingBottom="0dp"
-	        android:layout_marginLeft="10dp"
+	        android:layout_marginLeft="30dp"
 	        android:layout_alignParentTop="true"
 	        android:src="@drawable/dcs_center"
 	        android:contentDescription="@string/dcs" />
@@ -327,7 +328,7 @@
 	        android:paddingRight="0dp"
 	        android:paddingTop="5dp"
 	        android:paddingBottom="0dp"
-	        android:layout_marginLeft="5dp"
+	        android:layout_marginLeft="50dp"
 	        android:layout_alignParentTop="true"
 	        android:src="@drawable/driftwarn_center"
 	        android:contentDescription="@string/driftwarn" />
