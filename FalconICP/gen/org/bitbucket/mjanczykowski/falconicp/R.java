@@ -88,15 +88,14 @@ public final class R {
         public static final int driftwarn_down=0x7f02003c;
         public static final int driftwarn_up=0x7f02003d;
         public static final int font=0x7f02003e;
-        public static final int font_old=0x7f02003f;
-        public static final int ic_launcher=0x7f020040;
-        public static final int iff=0x7f020041;
-        public static final int iff_normal=0x7f020042;
-        public static final int iff_pressed=0x7f020043;
-        public static final int list=0x7f020044;
-        public static final int list_normal=0x7f020045;
-        public static final int list_pressed=0x7f020046;
-        public static final int mask=0x7f020047;
+        public static final int ic_launcher_falconicp=0x7f02003f;
+        public static final int iff=0x7f020040;
+        public static final int iff_normal=0x7f020041;
+        public static final int iff_pressed=0x7f020042;
+        public static final int list=0x7f020043;
+        public static final int list_normal=0x7f020044;
+        public static final int list_pressed=0x7f020045;
+        public static final int mask=0x7f020046;
     }
     public static final class id {
         public static final int AAButton=0x7f0a0004;

@@ -70,7 +70,7 @@ public class MenuDialogFragment extends DialogFragment {
 		}
 		
 		builder.setTitle(R.string.app_name)
-			.setIcon(R.drawable.ic_launcher)
+			.setIcon(R.drawable.ic_launcher_falconicp)
 			.setItems(resId, new DialogInterface.OnClickListener() {
 				
 				@Override

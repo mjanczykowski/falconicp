@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">FalconICP</string>
+    <string name="app_name">Falcon ICP</string>
     <string name="action_settings">Settings</string>
     <string name="icpbutton1">1</string>
     <string name="icpbutton2">2</string>
