@@ -142,8 +142,11 @@ public final class R {
         public static final int com1=0x7f06000e;
         public static final int com2=0x7f06000f;
         public static final int dcs=0x7f060016;
+        public static final int dialog_cancel=0x7f06002c;
+        public static final int dialog_exit=0x7f06002b;
+        public static final int dialog_exit_message=0x7f06002a;
         public static final int driftwarn=0x7f060017;
-        public static final int font_color=0x7f06002a;
+        public static final int font_color=0x7f06002d;
         public static final int icpbutton0=0x7f06000b;
         public static final int icpbutton1=0x7f060002;
         public static final int icpbutton2=0x7f060003;

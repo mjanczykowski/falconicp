@@ -101,8 +101,11 @@ public class MenuDialogFragment extends DialogFragment {
 
 				@Override
 				public boolean onKey(DialogInterface arg0, int keyCode, KeyEvent event) {
-					if(keyCode == KeyEvent.KEYCODE_BACK) {
+					if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+						Log.i("MenuDialogFragment", "onKey BACK");
 						mListener.onMenuExitClick(MenuDialogFragment.this);
+						MenuDialogFragment.this.dismiss();
+						return true;
 					}
 					return false;
 				}

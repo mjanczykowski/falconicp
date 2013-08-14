@@ -58,44 +58,50 @@ public class TcpClientThread extends Thread {
 			
 			byte[] buffer = new byte[130];
 			
-			while(connected) {
-				int fromServer;
-				
-				if((fromServer = in.read(buffer)) > 0) {
+			try {
+				while(connected) {
+					int fromServer;
 					
-					if(dedLines != null) {
-						synchronized(dedLines) {
-							if(fromServer == 130) {
-								for(int i = 0; i < 130; i++)
-								{
-									dedLines[i/26][i%26] = buffer[i];
+					if((fromServer = in.read(buffer)) > 0) {
+						
+						if(dedLines != null) {
+							synchronized(dedLines) {
+								if(fromServer == 130) {
+									for(int i = 0; i < 130; i++)
+									{
+										dedLines[i/26][i%26] = buffer[i];
+									}
 								}
 							}
 						}
+						
+						sendHandlerMessage(IncomingHandler.DATA, "");
 					}
-					
-					sendHandlerMessage(IncomingHandler.DATA, "");
+					else {
+						Log.v("tcpConnection", "closing connection, connected = " + connected);
+						connected = false;
+					}
 				}
-				else {
-					Log.v("tcpConnection", "running = false");
-					connected = false;
+				
+				synchronized(this) {
+					out.close();
+					in.close();
+					socket.close();
 				}
+				sendHandlerMessage(IncomingHandler.DISCONNECTED, "");
+			//Connection broken exception:
+			} catch (IOException e) {
+				Log.d("tcp thread", "disconnected: " + e.getMessage());
+				sendHandlerMessage(IncomingHandler.DISCONNECTED, "");
 			}
-			
-			synchronized(this) {
-				out.close();
-				in.close();
-				socket.close();
-			}
-			sendHandlerMessage(IncomingHandler.DISCONNECTED, "");
-			
+		// Connecting exceptions:	
 		} catch (UnknownHostException e) {
 			Log.d("tcp thread", "UnknownHostException " + e.getMessage());
 			sendHandlerMessage(IncomingHandler.CONNECTION_ERROR, e.getMessage());
 		} catch (SocketException e) {
 			Log.d("tcp thread", "SocketException " + e.getMessage());
 			String msg = e.getMessage();
-			if(msg.equals("Bad file number")) {
+			if(msg.contains("Bad file number") || msg.contains("Socket closed")) {
 				msg = "Interrupted";
 			}
 			sendHandlerMessage(IncomingHandler.CONNECTION_ERROR, msg);

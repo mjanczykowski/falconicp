@@ -331,17 +331,17 @@
 	        android:contentDescription="@string/dcs" />
 	        
 	        <org.bitbucket.mjanczykowski.falconicp.DriftWarnSwitch
-	        android:id="@+id/DriftWarn"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_toRightOf="@id/DCS"
-	        android:paddingLeft="0dp"
-	        android:paddingRight="0dp"
-	        android:paddingTop="5dp"
-	        android:paddingBottom="0dp"
-	        android:layout_marginLeft="5dp"
-	        android:layout_alignParentTop="true"
-	        android:src="@drawable/driftwarn_center"
-	        android:contentDescription="@string/driftwarn" />
+	            android:id="@+id/DriftWarn"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="5dp"
+	            android:layout_toRightOf="@id/DCS"
+	            android:contentDescription="@string/driftwarn"
+	            android:paddingBottom="0dp"
+	            android:paddingLeft="0dp"
+	            android:paddingRight="0dp"
+	            android:paddingTop="5dp"
+	            android:src="@drawable/driftwarn_center" />
+
 	</RelativeLayout>
 </LinearLayout>

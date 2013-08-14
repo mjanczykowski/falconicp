@@ -6,6 +6,9 @@ import org.bitbucket.mjanczykowski.falconicp.DCSView.DCSViewListener;
 import org.bitbucket.mjanczykowski.falconicp.DriftWarnSwitch.DriftWarnListener;
 import org.bitbucket.mjanczykowski.falconicp.MenuDialogFragment.MenuDialogListener;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,7 +29,9 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 	private DEDView dedView;
 	private TcpClientThread tcpThread;
 	private MenuDialogFragment menuFragment = null;
+	private AlertDialog exitDialog = null;
 	private boolean connected = false;
+	private boolean resumed = false;
 	
 	private final IncomingHandler handler = new IncomingHandler(this);
 	private byte[][] dedLines = new byte[5][26]; 
@@ -63,7 +68,7 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
     	super.onResume();
     	
     	Log.v("activity state", "onResume");
-    	
+
     	// Read settings
     	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
     	if(sp.getBoolean(Settings.KEY_FULLSCREEN, true) == true) {
@@ -83,21 +88,32 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
     	if(sp.getBoolean(Settings.KEY_AUTOCONNECT, false) == true) {
     		connect();
     	}
-    	else {
+    	else if(exitDialog == null || exitDialog.isShowing() == false){
     		showMenuDialog();
     	}
+    	
+    	this.resumed = true;
     }
     
     @Override
-    protected void onPause() {
+    protected void onPause() { 	
+    	this.resumed = false;
+    	
     	super.onPause();
     	
-    	disconnect();
-    	
     	if(menuFragment != null) {
-    		menuFragment.dismiss();
+    		menuFragment.dismissAllowingStateLoss();
     		menuFragment = null;
     	}
+    	    	
+    	if(exitDialog != null)
+    	{
+    		exitDialog.dismiss();
+    		exitDialog = null;
+    	}
+		
+    	
+    	disconnect();
     	
     	Log.v("activity state", "onPause");
     }
@@ -112,6 +128,17 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
     public boolean onPrepareOptionsMenu(Menu menu) {
     	showMenuDialog();
         return true;
+    }
+    
+    @Override
+    public void onBackPressed() {
+    	Log.i("FalconICP", "onBackPressed");
+    	if(connected) {
+    		showMenuDialog();
+    	}
+    	else {
+    		showExitDialog();
+    	}
     }
 
     /**
@@ -133,12 +160,13 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
      */
     public void showMenuDialog() {
     	Log.d("showMenuDialog", "executed");
-    	
+
+    	//if(menuFragment != null && menuFragment.isResumed()) {
     	if(menuFragment != null) {
-    		menuFragment.dismiss();
+    		menuFragment.dismissAllowingStateLoss();
     	}
     	menuFragment = MenuDialogFragment.newInstance(connected);
-    	menuFragment.show(getSupportFragmentManager(), "MenuDialogFragment");
+    	menuFragment.show(getSupportFragmentManager(), "MenuDialogFragment");    	
     }
 
 	@Override
@@ -148,12 +176,13 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 
 	@Override
 	public void onMenuExitClick(DialogFragment dialog) {
-		finish();
+		Log.i("FalconICP", "onMenuExitClick");
+		showExitDialog();
 	}
 
 	@Override
 	public void onMenuConnectClick(DialogFragment dialog) {
-		connect();		
+		connect();
 	}
 
 	@Override
@@ -166,11 +195,54 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 		menuFragment = null;
 	}
 	
+	private void showExitDialog() {
+		Log.i("exit dialog", "show");
+		exitDialog = new AlertDialog.Builder(this)
+			.setMessage(R.string.dialog_exit_message)
+			.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					if(FalconICP.this.menuFragment == null) {
+						FalconICP.this.showMenuDialog();
+					}
+					FalconICP.this.exitDialog = null;
+				}
+			})
+			.setPositiveButton(R.string.dialog_exit, new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					FalconICP.this.exitDialog = null;
+					FalconICP.this.finish();
+				}
+			})
+			.create();
+		
+		exitDialog.setOnDismissListener(new OnDismissListener() {
+
+			@Override
+			public void onDismiss(DialogInterface dialog) {
+				if(FalconICP.this.menuFragment == null) {
+					FalconICP.this.showMenuDialog();
+				}
+				FalconICP.this.exitDialog = null;
+			}
+			
+		});
+		
+		exitDialog.show();
+	}
+	
 	/**
 	 * Runs client thread and tries to connect to the server.
 	 */
 	private void connect()
 	{
+		if(connected) {
+			disconnect();
+		}
+		
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 		tcpThread = new TcpClientThread(sp.getString(Settings.KEY_SERVER_IP, "192.168.0.1"), Integer.parseInt(sp.getString(Settings.KEY_SERVER_PORT, "30456")), Integer.parseInt(sp.getString(Settings.KEY_TIMEOUT, "2000")), handler);
 		tcpThread.setDedLines(dedLines);
@@ -193,6 +265,11 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 		if(tcpThread != null)
 		{
 			tcpThread.closeThread();
+			try {
+				tcpThread.join(1000);
+			} catch (InterruptedException e) {
+				Log.d("FalconICP", "InterruptedException: " + e.getMessage());
+			}
 	    	tcpThread = null;
 		}
 	}
@@ -202,7 +279,7 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 	 * @param text Information to show
 	 */
 	private void showToast(String text) {
-		int duration = Toast.LENGTH_SHORT;
+		int duration = Toast.LENGTH_LONG;
 		
 		Toast.makeText(getApplicationContext(), text, duration).show();
 	}
@@ -242,7 +319,9 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 					icp.connected = false;
 					icp.tcpThread = null;
 					icp.showToast("Disconnected");
-					icp.showMenuDialog();
+					if(icp.resumed) {
+						icp.showMenuDialog();
+					}
 					break;
 				case CONNECTION_ERROR:
 					Log.v("message", "connection_error");

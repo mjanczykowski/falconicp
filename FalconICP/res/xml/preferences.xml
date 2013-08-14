@@ -14,14 +14,14 @@
             android:key="pref_key_server_port"
             android:summary="@string/pref_summary_server_port"
             android:title="@string/pref_title_server_port"
-            android:defaultValue="7654"
+            android:defaultValue="30456"
             android:digits="0123456789"
             android:inputType="number" />
         <EditTextPreference 
             android:key="pref_key_timeout"
             android:summary="@string/pref_summary_timeout"
             android:title="@string/pref_title_timeout"
-            android:defaultValue="10"
+            android:defaultValue="2000"
             android:digits="0123456789"
             android:inputType="number" />
         <CheckBoxPreference 

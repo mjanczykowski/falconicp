@@ -53,7 +53,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		
 		mServerIPPreference.setSummary(sharedPreferences.getString(KEY_SERVER_IP, null));
 		mServerPortPreference.setSummary(sharedPreferences.getString(KEY_SERVER_PORT, null));
-		mTimeoutPreference.setSummary(sharedPreferences.getString(KEY_TIMEOUT, null));
+		mTimeoutPreference.setSummary(sharedPreferences.getString(KEY_TIMEOUT, null) + " ms");
 		this.getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 	}
 	
