@@ -244,7 +244,14 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 		}
 		
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-		tcpThread = new TcpClientThread(sp.getString(Settings.KEY_SERVER_IP, "192.168.0.1"), Integer.parseInt(sp.getString(Settings.KEY_SERVER_PORT, "30456")), Integer.parseInt(sp.getString(Settings.KEY_TIMEOUT, "2000")), handler);
+		String ip = sp.getString(Settings.KEY_SERVER_IP, "0.0.0.0");
+		Log.v("FalconICP", ip);
+		if(ip.equals("0.0.0.0")) {
+			// Load settings if no IP set
+			startActivity(new Intent(this, Settings.class));
+			return;
+		}
+		tcpThread = new TcpClientThread(ip, Integer.parseInt(sp.getString(Settings.KEY_SERVER_PORT, "30456")), Integer.parseInt(sp.getString(Settings.KEY_TIMEOUT, "2000")), handler);
 		tcpThread.setDedLines(dedLines);
 		Log.d("main thread", "starting tcp thread");
 		tcpThread.start();

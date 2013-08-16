@@ -91,12 +91,25 @@
         	
     </LinearLayout>
     
-    <org.bitbucket.mjanczykowski.falconicp.DEDView
-        android:id="@+id/ded"
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp" />
+    	android:layout_height="wrap_content"
+    	android:layout_weight="1"
+    	android:gravity="center"
+    	android:background="#101010"
+    	android:paddingBottom="0dp"
+    	android:paddingLeft="0dp"
+    	android:paddingTop="0dp"
+    	android:paddingRight="0dp" >
+        	
+	    <org.bitbucket.mjanczykowski.falconicp.DEDView
+	        android:id="@+id/ded"
+	        android:layout_width="fill_parent"
+	        android:layout_height="100dp"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp" />
+	    
+	</RelativeLayout>
     
     <RelativeLayout
         android:id="@+id/keypad"

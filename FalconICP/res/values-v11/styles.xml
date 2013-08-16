@@ -6,6 +6,13 @@
     -->
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
         <!-- API 11 theme customizations can go here. -->
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    
+    <style name="SettingsBaseTheme" parent="android:Theme.Holo">
+        <!-- API 11 theme customizations can go here. -->
+        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>
