@@ -9,7 +9,7 @@
             android:title="@string/pref_title_server_ip"
             android:defaultValue="0.0.0.0"
             android:digits="0123456789."
-            android:inputType="number" />
+            android:inputType="phone" />
         <EditTextPreference 
             android:key="pref_key_server_port"
             android:summary="@string/pref_summary_server_port"
