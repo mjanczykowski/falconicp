@@ -50,10 +50,14 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
         dedView.setDedLines(dedLines);
         
         DCSView dcs = (DCSView) findViewById(R.id.DCS);
-        dcs.setActionListener(this);
+        if(dcs != null) {
+        	dcs.setActionListener(this);
+        }
         
         DriftWarnSwitch dws = (DriftWarnSwitch) findViewById(R.id.DriftWarn);
-        dws.setActionListener(this);
+        if(dws != null) {
+        	dws.setActionListener(this);
+        }
     }
     
     @Override

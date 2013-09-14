@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.bitbucket.mjanczykowski.falconicp"
-    android:versionCode="3"
-    android:versionName="0.3" >
+    android:versionCode="4"
+    android:versionName="0.3.1" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -21,13 +21,12 @@
             android:screenOrientation="sensorPortrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity 
         	android:name=".Settings"
-        	android:screenOrientation="portrait"
+        	android:screenOrientation="sensorPortrait"
         	android:theme="@style/SettingsBaseTheme" />
     </application> 
 
