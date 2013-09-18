@@ -107,8 +107,8 @@
 
 	    <org.bitbucket.mjanczykowski.falconicp.DEDView
 	        android:id="@+id/ded"
-	        android:layout_width="550dp"
-	        android:layout_height="120dp"
+	        android:layout_width="460dp"
+	        android:layout_height="110dp"
 	        android:paddingTop="10dp"
 	        android:paddingBottom="10dp" />
  
@@ -121,10 +121,10 @@
 	    android:layout_margin="0dp"
 	    android:background="#101010"
 	    android:gravity="center"
-	    android:paddingBottom="15dp"
+	    android:paddingBottom="10dp"
 	    android:paddingLeft="0dp"
 	    android:paddingRight="0dp"
-	    android:paddingTop="15dp" >
+	    android:paddingTop="10dp" >
 	          		        
         <org.bitbucket.mjanczykowski.falconicp.DCSView
         android:id="@+id/DCS"

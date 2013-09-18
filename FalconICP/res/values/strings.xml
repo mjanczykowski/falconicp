@@ -32,7 +32,7 @@
     <string name="pref_title_server_port">Port</string>
     <string name="pref_summary_timeout">10</string>
     <string name="pref_title_timeout">Timeout</string>
-    <string name="pref_summary_autoconnect">Autoconnect on resume</string>
+    <string name="pref_summary_autoconnect">Connect automatically on resume</string>
     <string name="pref_title_autoconnect">Autoconnect</string>
     <string name="pref_display_title">Display</string>
 	<string name="pref_summary_backlight">Keep backlight on</string>
@@ -40,7 +40,7 @@
     <string name="pref_summary_fullscreen">Hide all bars</string>
     <string name="pref_title_fullscreen">Fullscreen</string>
     <string name="pref_summary_land_ded_only">Show DED only in landscape mode</string>
-    <string name="pref_title_land_ded_only">DED-only Landscape</string>
+    <string name="pref_title_land_ded_only">Horizontal DED-only</string>
     <string name="menu_connect">Connect</string>
     <string name="menu_disconnect">Disconnect</string>
     <string name="menu_settings">Settings</string>

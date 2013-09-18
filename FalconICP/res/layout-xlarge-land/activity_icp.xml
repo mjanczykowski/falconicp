@@ -107,8 +107,8 @@
 
 	    <org.bitbucket.mjanczykowski.falconicp.DEDView
 	        android:id="@+id/ded"
-	        android:layout_width="800dp"
-	        android:layout_height="200dp"
+	        android:layout_width="600dp"
+	        android:layout_height="160dp"
 	        android:paddingTop="10dp"
 	        android:paddingBottom="10dp" />
  
