@@ -70,7 +70,7 @@ public class DEDView extends View {
 		
 		canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), p);
 		
-		float scale = (float)canvas.getWidth() / (float)bufferImage.getWidth();
+		float scale = (float)this.getWidth() / (float)bufferImage.getWidth();
 		int topY = 0;
 		
 		canvas.scale(scale, scale);
