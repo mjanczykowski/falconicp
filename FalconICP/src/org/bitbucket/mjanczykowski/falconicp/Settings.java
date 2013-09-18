@@ -15,6 +15,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	public static final String KEY_AUTOCONNECT = "pref_key_autoconnect";
 	public static final String KEY_BACKLIGHT = "pref_key_backlight";
 	public static final String KEY_FULLSCREEN = "pref_key_fullscreen";
+	public static final String KEY_LAND_DED_ONLY = "pref_key_land_ded_only";
 	private EditTextPreference mServerIPPreference;
 	private EditTextPreference mServerPortPreference;
 	private EditTextPreference mTimeoutPreference;

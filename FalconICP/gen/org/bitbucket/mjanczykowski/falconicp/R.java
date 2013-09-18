@@ -98,10 +98,10 @@ public final class R {
         public static final int mask=0x7f020046;
     }
     public static final class id {
-        public static final int AAButton=0x7f0a0004;
-        public static final int AGButton=0x7f0a0005;
-        public static final int COM1Button=0x7f0a0001;
-        public static final int COM2Button=0x7f0a0002;
+        public static final int AAButton=0x7f0a0005;
+        public static final int AGButton=0x7f0a0006;
+        public static final int COM1Button=0x7f0a0002;
+        public static final int COM2Button=0x7f0a0003;
         public static final int DCS=0x7f0a0017;
         public static final int DriftWarn=0x7f0a0018;
         public static final int ICPArrowDown=0x7f0a0016;
@@ -119,15 +119,20 @@ public final class R {
         public static final int ICPButtonENTR=0x7f0a000f;
         public static final int ICPButtonRCL=0x7f0a000b;
         public static final int IFFButton=0x7f0a0019;
-        public static final int ListButton=0x7f0a0003;
-        public static final int action_settings=0x7f0a001a;
-        public static final int ded=0x7f0a0006;
-        public static final int functionkeys=0x7f0a0000;
+        public static final int ListButton=0x7f0a0004;
+        public static final int action_settings=0x7f0a001e;
+        public static final int ded=0x7f0a0000;
+        public static final int functionkeys=0x7f0a0001;
+        public static final int icp_keypad=0x7f0a001a;
+        public static final int icp_keypad1=0x7f0a001b;
+        public static final int icp_keypad2=0x7f0a001c;
+        public static final int icp_keypad3=0x7f0a001d;
         public static final int keypad=0x7f0a0007;
         public static final int switches=0x7f0a0014;
     }
     public static final class layout {
-        public static final int activity_icp=0x7f030000;
+        public static final int activity_ded=0x7f030000;
+        public static final int activity_icp=0x7f030001;
     }
     public static final class menu {
         public static final int icp=0x7f090000;
@@ -142,11 +147,11 @@ public final class R {
         public static final int com1=0x7f06000e;
         public static final int com2=0x7f06000f;
         public static final int dcs=0x7f060016;
-        public static final int dialog_cancel=0x7f06002c;
-        public static final int dialog_exit=0x7f06002b;
-        public static final int dialog_exit_message=0x7f06002a;
+        public static final int dialog_cancel=0x7f06002e;
+        public static final int dialog_exit=0x7f06002d;
+        public static final int dialog_exit_message=0x7f06002c;
         public static final int driftwarn=0x7f060017;
-        public static final int font_color=0x7f06002d;
+        public static final int font_color=0x7f06002f;
         public static final int icpbutton0=0x7f06000b;
         public static final int icpbutton1=0x7f060002;
         public static final int icpbutton2=0x7f060003;
@@ -161,21 +166,23 @@ public final class R {
         public static final int icpbuttonrcl=0x7f06000c;
         public static final int iff=0x7f060010;
         public static final int list=0x7f060011;
-        public static final int menu_connect=0x7f060026;
-        public static final int menu_disconnect=0x7f060027;
-        public static final int menu_exit=0x7f060029;
-        public static final int menu_settings=0x7f060028;
+        public static final int menu_connect=0x7f060028;
+        public static final int menu_disconnect=0x7f060029;
+        public static final int menu_exit=0x7f06002b;
+        public static final int menu_settings=0x7f06002a;
         public static final int pref_connection_title=0x7f060018;
         public static final int pref_display_title=0x7f060021;
         public static final int pref_summary_autoconnect=0x7f06001f;
         public static final int pref_summary_backlight=0x7f060022;
         public static final int pref_summary_fullscreen=0x7f060024;
+        public static final int pref_summary_land_ded_only=0x7f060026;
         public static final int pref_summary_server_ip=0x7f060019;
         public static final int pref_summary_server_port=0x7f06001b;
         public static final int pref_summary_timeout=0x7f06001d;
         public static final int pref_title_autoconnect=0x7f060020;
         public static final int pref_title_backlight=0x7f060023;
         public static final int pref_title_fullscreen=0x7f060025;
+        public static final int pref_title_land_ded_only=0x7f060027;
         public static final int pref_title_server_ip=0x7f06001a;
         public static final int pref_title_server_port=0x7f06001c;
         public static final int pref_title_timeout=0x7f06001e;

@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -42,22 +43,7 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
         
         Log.v("activity state", "onCreate");
         
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        
-        setContentView(R.layout.activity_icp);
-
-        dedView = (DEDView) findViewById(R.id.ded);
-        dedView.setDedLines(dedLines);
-        
-        DCSView dcs = (DCSView) findViewById(R.id.DCS);
-        if(dcs != null) {
-        	dcs.setActionListener(this);
-        }
-        
-        DriftWarnSwitch dws = (DriftWarnSwitch) findViewById(R.id.DriftWarn);
-        if(dws != null) {
-        	dws.setActionListener(this);
-        }
+        requestWindowFeature(Window.FEATURE_NO_TITLE);       
     }
     
     @Override
@@ -75,6 +61,30 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 
     	// Read settings
     	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+    	
+    	if(sp.getBoolean(Settings.KEY_LAND_DED_ONLY,  false) == true &&
+    			this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        	setContentView(R.layout.activity_ded);
+        }
+        else {
+        	setContentView(R.layout.activity_icp);
+        }
+
+        dedView = (DEDView) findViewById(R.id.ded);
+        if(dedView != null) {
+        	dedView.setDedLines(dedLines);
+        }
+        
+        DCSView dcs = (DCSView) findViewById(R.id.DCS);
+        if(dcs != null) {
+        	dcs.setActionListener(this);
+        }
+        
+        DriftWarnSwitch dws = (DriftWarnSwitch) findViewById(R.id.DriftWarn);
+        if(dws != null) {
+        	dws.setActionListener(this);
+        }
+    	
     	if(sp.getBoolean(Settings.KEY_FULLSCREEN, true) == true) {
     		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     	}
@@ -318,7 +328,9 @@ public class FalconICP extends FragmentActivity implements MenuDialogListener, D
 			switch(msg.what) {
 				case DATA:
 					Log.v("message", "data");
-					icp.dedView.invalidate();
+					if(icp.dedView != null) {
+						icp.dedView.invalidate();
+					}
 					break;
 				case CONNECTED:
 					Log.v("message", "connected");

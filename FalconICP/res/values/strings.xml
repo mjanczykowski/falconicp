@@ -39,6 +39,8 @@
     <string name="pref_title_backlight">Backlight</string>
     <string name="pref_summary_fullscreen">Hide all bars</string>
     <string name="pref_title_fullscreen">Fullscreen</string>
+    <string name="pref_summary_land_ded_only">Show DED only in landscape mode</string>
+    <string name="pref_title_land_ded_only">DED-only Landscape</string>
     <string name="menu_connect">Connect</string>
     <string name="menu_disconnect">Disconnect</string>
     <string name="menu_settings">Settings</string>

@@ -43,6 +43,11 @@
             android:summary="@string/pref_summary_fullscreen"
             android:title="@string/pref_title_fullscreen"
             android:defaultValue="true" />
+        <CheckBoxPreference 
+            android:key="pref_key_land_ded_only"
+            android:summary="@string/pref_summary_land_ded_only"
+            android:title="@string/pref_title_land_ded_only"
+            android:defaultValue="false" />
     </PreferenceCategory>
 
 </PreferenceScreen>

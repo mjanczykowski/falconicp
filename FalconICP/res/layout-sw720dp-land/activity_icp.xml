@@ -1,0 +1,359 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101010"
+    android:gravity="top"
+    android:padding="0dp"
+    tools:context=".FalconICP" >
+
+    <LinearLayout
+        android:id="@+id/functionkeys"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="#303030"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp" >
+        
+        	<ImageButton
+	        android:id="@+id/COM1Button"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:padding="0dp"
+	        android:src="@drawable/comone"
+	        android:background="@android:color/transparent"
+	        android:onClick="buttonClicked"
+	        android:contentDescription="@string/com1"
+	        android:tag="SimICPCom1" />
+
+        	<ImageButton
+	        android:id="@+id/COM2Button"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:padding="0dp"
+	        android:src="@drawable/comtwo"
+	        android:background="@android:color/transparent"
+	        android:onClick="buttonClicked"
+	        android:contentDescription="@string/com2"
+	        android:tag="SimICPCom2" />
+
+        	<ImageButton
+	        android:id="@+id/IFFButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:padding="0dp"
+	        android:src="@drawable/iff"
+	        android:background="@android:color/transparent"
+	        android:onClick="buttonClicked"
+	        android:contentDescription="@string/iff"
+	        android:tag="SimICPIFF" />
+
+        	<ImageButton
+	        android:id="@+id/ListButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:padding="0dp"
+	        android:src="@drawable/list"
+	        android:background="@android:color/transparent"
+	        android:onClick="buttonClicked"
+	        android:contentDescription="@string/list"
+	        android:tag="SimICPLIST" />
+        	
+        	<ImageButton
+	        android:id="@+id/AAButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:padding="0dp"
+	        android:src="@drawable/aa"
+	        android:background="@android:color/transparent"
+	        android:onClick="buttonClicked"
+	        android:contentDescription="@string/aa"
+	        android:tag="SimICPAA" />
+
+        	<ImageButton
+       	    android:id="@+id/AGButton"
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="fill_parent"
+       	    android:layout_weight="1"
+       	    android:background="@android:color/transparent"
+	        android:onClick="buttonClicked"
+       	    android:contentDescription="@string/ag"
+       	    android:padding="0dp"
+       	    android:src="@drawable/ag"
+	        android:tag="SimICPAG" />
+        	
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+    	android:layout_height="0dp"
+    	android:layout_weight="1"
+    	android:gravity="center"
+    	android:background="#101010"
+    	android:paddingBottom="0dp"
+    	android:paddingLeft="0dp"
+    	android:paddingTop="0dp"
+    	android:paddingRight="0dp" >
+
+	    <org.bitbucket.mjanczykowski.falconicp.DEDView
+	        android:id="@+id/ded"
+	        android:layout_width="700dp"
+	        android:layout_height="200dp"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp" />
+ 
+	</RelativeLayout>
+
+	
+	<RelativeLayout
+	    android:id="@+id/icp_keypad"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="0dp"
+	    android:background="#101010"
+	    android:gravity="center"
+	    android:paddingBottom="5dp"
+	    android:paddingLeft="0dp"
+	    android:paddingRight="0dp"
+	    android:paddingTop="5dp" >
+	          		        
+        <org.bitbucket.mjanczykowski.falconicp.DCSView
+        android:id="@+id/DCS"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/dcs_center"
+        android:contentDescription="@string/dcs" />
+        
+       	<ImageButton
+        android:id="@+id/ICPArrowUp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:onClick="buttonClicked"
+        android:layout_below="@id/DCS"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="0dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="0dp"
+        android:paddingTop="10dp"
+        android:src="@drawable/arrowup"
+        android:contentDescription="@string/arrow_up"
+        android:tag="SimICPNext" />
+        
+        <ImageButton
+        android:id="@+id/ICPArrowDown"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:onClick="buttonClicked"
+        android:layout_below="@id/ICPArrowUp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="20dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="10dp"
+        android:src="@drawable/arrowdown"
+        android:contentDescription="@string/arrow_down"
+        android:tag="SimICPPrevious" />
+
+		<ImageButton
+		android:id="@+id/ICPButton1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+		android:layout_toRightOf="@id/DCS"
+		android:layout_marginLeft="40dp"
+		android:padding="20dp"
+		android:src="@drawable/button1"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbutton1"
+		android:onClick="buttonClicked"
+		android:tag="SimICPTILS" />
+
+		<ImageButton
+		android:id="@+id/ICPButton2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/ICPButton1"
+		android:padding="20dp"
+		android:layout_marginLeft="0dp"
+		android:src="@drawable/button2"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbutton2"
+		android:onClick="buttonClicked"
+		android:tag="SimICPALOW" />
+		
+		<ImageButton
+		android:id="@+id/ICPButton3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/ICPButton2"
+		android:padding="20dp"
+		android:layout_marginLeft="0dp"
+		android:src="@drawable/button3"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbutton3"
+		android:onClick="buttonClicked"
+		android:tag="SimICPTHREE" />
+ 				
+		<ImageButton
+		android:id="@+id/ICPButtonRCL"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/ICPButton3"
+		android:padding="20dp"
+		android:layout_marginLeft="20dp"
+		android:src="@drawable/button_rcl"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbuttonrcl"
+		android:onClick="buttonClicked"
+		android:tag="SimICPCLEAR" />
+		
+		<ImageButton
+		android:id="@+id/ICPButton4"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/ICPButton1"
+		android:layout_alignLeft="@id/ICPButton1"
+		android:layout_marginTop="0dp"
+		android:padding="20dp"
+		android:src="@drawable/button4"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbutton4"
+		android:onClick="buttonClicked"
+		android:tag="SimICPStpt" />
+		
+		<ImageButton
+		android:id="@+id/ICPButton5"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/ICPButton4"
+		android:padding="20dp"
+		android:layout_marginLeft="0dp"
+		android:layout_alignTop="@id/ICPButton4"
+		android:src="@drawable/button5"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbutton5"
+		android:onClick="buttonClicked"
+		android:tag="SimICPCrus" />
+		
+		<ImageButton
+		android:id="@+id/ICPButton6"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/ICPButton5"
+		android:layout_alignTop="@id/ICPButton4"
+		android:padding="20dp"
+		android:layout_marginLeft="0dp"
+		android:src="@drawable/button6"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbutton6"
+		android:onClick="buttonClicked"
+		android:tag="SimICPSIX" />
+		
+		<ImageButton
+		android:id="@+id/ICPButtonENTR"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/ICPButton6"
+		android:layout_alignTop="@id/ICPButton4"
+		android:padding="20dp"
+		android:layout_marginLeft="20dp"
+		android:src="@drawable/button_entr"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbuttonent"
+		android:onClick="buttonClicked"
+		android:tag="SimICPEnter" />
+		
+		<ImageButton
+		android:id="@+id/ICPButton7"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/ICPButton4"
+		android:layout_alignLeft="@id/ICPButton4"
+		android:layout_marginTop="0dp"
+		android:padding="20dp"
+		android:src="@drawable/button7"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbutton7"
+		android:onClick="buttonClicked"
+		android:tag="SimICPMark" />
+		
+		<ImageButton
+		android:id="@+id/ICPButton8"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/ICPButton7"
+		android:padding="20dp"
+		android:layout_marginLeft="0dp"
+		android:layout_alignTop="@id/ICPButton7"
+		android:src="@drawable/button8"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbutton8"
+		android:onClick="buttonClicked"
+		android:tag="SimICPEIGHT" />
+		
+		<ImageButton
+		android:id="@+id/ICPButton9"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/ICPButton8"
+		android:layout_alignTop="@id/ICPButton7"
+		android:padding="20dp"
+		android:layout_marginLeft="0dp"
+		android:src="@drawable/button9"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbutton9"
+		android:onClick="buttonClicked"
+		android:tag="SimICPNINE" />
+		
+		<ImageButton
+		android:id="@+id/ICPButton0"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/ICPButton9"
+		android:layout_alignTop="@id/ICPButton7"
+		android:padding="20dp"
+		android:layout_marginLeft="0dp"
+		android:src="@drawable/button0"
+		android:background="@android:color/transparent"
+		android:contentDescription="@string/icpbutton0"
+		android:onClick="buttonClicked"
+		android:tag="SimICPZERO" />
+
+        <org.bitbucket.mjanczykowski.falconicp.DriftWarnSwitch
+        android:id="@+id/DriftWarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="0dp"
+        android:layout_toRightOf="@+id/ICPButtonENTR"
+        android:contentDescription="@string/driftwarn"
+        android:paddingBottom="5dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="0dp"
+        android:paddingTop="5dp"
+        android:src="@drawable/driftwarn_center" />
+
+	</RelativeLayout>   
+
+</LinearLayout>
